@@ -1,3 +1,5 @@
+easyblock = 'ConfigureMake'
+
 name = 'SWIG'
 version = '4.0.1'
 
@@ -10,20 +12,24 @@ toolchainopts = {'pic': True}
 
 source_urls = [SOURCEFORGE_SOURCE]
 sources = [SOURCELOWER_TAR_GZ]
-patches = ['SWIG-4_skip_tests_with_boost_deps.patch',]
 checksums = [
     '7a00b4d0d53ad97a14316135e2d702091cd5f193bb58bcfcd8bc59d41e7887a9',  # swig-4.0.1.tar.gz
-    '7fe1cb4f753abc28f2c315aec3e0d2c9e987fe5e305256e64dddb2a2eb352ee6',  # SWIG-4_skip_tests_with_boost_deps.patch
 ]
 
 builddependencies = [('binutils', '2.32')]
 
-multi_deps = {'Python': ['3.7.4', '2.7.16']}
-
 dependencies = [
+    ('zlib', '1.2.11'),
     ('PCRE', '8.43'),
 ]
 
-runtest = " -k check"
+configopts = '--without-alllang --with-boost=no'
+
+runtest = "check"
+
+sanity_check_paths = {
+    'files': ['bin/ccache-swig', 'bin/swig'],
+    'dirs': ['share/swig/%(version)s/python'],
+}
 
 moduleclass = 'devel'
