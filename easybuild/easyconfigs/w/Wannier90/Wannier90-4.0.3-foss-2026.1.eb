@@ -10,7 +10,7 @@ homepage = 'http://www.wannier.org'
 description = """A tool for obtaining maximally-localised Wannier functions"""
 
 toolchain = {'name': 'foss', 'version': '2026.1'}
-toolchainopts = {'usempi': True, 'strict': True, 'noopt': True, 'debug': True}
+toolchainopts = {'usempi': True, 'strict': True}
 
 github_account = 'wannier-developers'
 source_urls = [GITHUB_LOWER_SOURCE]
@@ -52,9 +52,9 @@ Wannier90 as a community code: new features and applications, J. Phys. Cond. Mat
 # In all three cases we are adding the -DWANNIER90_WITH_C=ON as well.
 # It appears that static libraries and MPI does not work.
 configopts = [
-    '-DWANNIER90_MPI=ON -DWANNIER90_WITH_C=ON -DWANNIER90_SHARED_LIBS=ON',
-    '-DWANNIER90_MPI=OFF -DWANNIER90_WITH_C=ON -DWANNIER90_SHARED_LIBS=ON',
     '-DWANNIER90_WITH_C=ON -DWANNIER90_SHARED_LIBS=OFF'
+    '-DWANNIER90_MPI=OFF -DWANNIER90_WITH_C=ON -DWANNIER90_SHARED_LIBS=ON',
+    '-DWANNIER90_MPI=ON -DWANNIER90_WITH_C=ON -DWANNIER90_SHARED_LIBS=ON',
 ]
 
 local_executables = ['wannier90.x', 'postw90.x', 'w90chk2chk.x', 'w90spn2spn.x']
